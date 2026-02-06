@@ -1,6 +1,8 @@
 package com.example.aniverse.di
 
 import com.example.aniverse.data.remote.AnimeApi
+import com.example.aniverse.data.repository.AnimeRepositoryImpl
+import com.example.aniverse.domain.repository.AnimeRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -64,6 +66,14 @@ object AppModule {
         retrofit: Retrofit
     ): AnimeApi {
         return retrofit.create(AnimeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnimeRepository(
+        animeRepositoryImpl: AnimeRepositoryImpl
+    ): AnimeRepository {
+        return animeRepositoryImpl
     }
 }
 
