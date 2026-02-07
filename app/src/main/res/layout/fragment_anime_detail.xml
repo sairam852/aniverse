@@ -68,12 +68,23 @@
                     android:contentDescription="@string/poster"
                     tools:src="@color/black" />
 
-                <WebView
-                    android:id="@+id/webViewTrailer"
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtubePlayerView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/detail_poster_height"
+                    android:layout_height="250dp"
                     android:visibility="gone"
-                    tools:visibility="gone" />
+                    app:enableAutomaticInitialization="false"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabPlayTrailer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_play_arrow"
+                    android:contentDescription="@string/play_trailer"
+                    tools:visibility="visible" />
             </FrameLayout>
 
             <TextView
