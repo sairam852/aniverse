@@ -29,7 +29,8 @@ data class AnimeDetails(
     val trailerUrl: String?,
     val genres: List<String>,
     val airedFrom: String?,
-    val airedTo: String?
+    val airedTo: String?,
+    val cast: List<Character> = emptyList()
 ) {
     /**
      * Display title: prefers English, falls back to Japanese title, then default title.
@@ -69,3 +70,9 @@ data class AnimeDetails(
             else -> "Unknown"
         }
 }
+
+data class Character(
+    val id: Int,
+    val name: String,
+    val imageUrl: String?
+)

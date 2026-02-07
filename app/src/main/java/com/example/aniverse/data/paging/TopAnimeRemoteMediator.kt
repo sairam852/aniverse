@@ -10,7 +10,7 @@ import com.example.aniverse.data.local.dao.AnimeDao
 import com.example.aniverse.data.local.dao.RemoteKeysDao
 import com.example.aniverse.data.local.entity.AnimeEntity
 import com.example.aniverse.data.local.entity.RemoteKeys
-import com.example.aniverse.data.remote.JikanApiService
+import com.example.aniverse.data.remote.AnimeApi
 import com.example.aniverse.data.remote.dto.AnimeDto
 import retrofit2.HttpException
 import java.io.IOException
@@ -26,7 +26,7 @@ import java.io.IOException
  */
 @OptIn(ExperimentalPagingApi::class)
 class TopAnimeRemoteMediator(
-    private val apiService: JikanApiService,
+    private val apiService: AnimeApi,
     private val database: AppDatabase
 ) : RemoteMediator<Int, AnimeEntity>() {
 
@@ -34,12 +34,14 @@ class TopAnimeRemoteMediator(
     private val remoteKeysDao: RemoteKeysDao = database.remoteKeysDao()
 
     override suspend fun initialize(): InitializeAction {
+        // If sync is disabled, don't refresh
+        if (!com.example.aniverse.config.AppConfig.enableSync) {
+            return InitializeAction.SKIP_INITIAL_REFRESH
+        }
+
         // Check if we have cached data by checking if any anime exist in the database
-        // This is a simple check - if we have any cached anime, skip initial refresh
         val hasCachedData = try {
-            // Try to get any anime (checking ID 1 as a sample)
-            // If database is empty, this will return null
-            animeDao.getAnimeById(1) != null
+            animeDao.getAnyAnime() != null
         } catch (e: Exception) {
             // If there's an error, assume no cached data and refresh
             false
@@ -58,6 +60,11 @@ class TopAnimeRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, AnimeEntity>
     ): MediatorResult {
+        // If sync is disabled, don't load from network
+        if (!com.example.aniverse.config.AppConfig.enableSync) {
+            return MediatorResult.Success(endOfPaginationReached = true)
+        }
+
         return try {
             // Determine which page to load
             val page = when (loadType) {

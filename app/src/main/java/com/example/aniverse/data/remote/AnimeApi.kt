@@ -22,5 +22,10 @@ interface AnimeApi {
     suspend fun getAnimeDetails(
         @Path("id") id: Int
     ): AnimeDetailsResponseDto
+
+    @GET("anime/{id}/characters")
+    suspend fun getAnimeCharacters(
+        @Path("id") id: Int
+    ): com.example.aniverse.data.remote.dto.CharactersResponseDto
 }
 

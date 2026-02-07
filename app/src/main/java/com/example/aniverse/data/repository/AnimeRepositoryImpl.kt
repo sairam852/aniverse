@@ -9,7 +9,7 @@ import com.example.aniverse.data.local.AppDatabase
 import com.example.aniverse.data.local.dao.AnimeDao
 import com.example.aniverse.data.local.entity.AnimeEntity
 import com.example.aniverse.data.paging.TopAnimeRemoteMediator
-import com.example.aniverse.data.remote.JikanApiService
+import com.example.aniverse.data.remote.AnimeApi
 import com.example.aniverse.domain.mapper.toDomain
 import com.example.aniverse.domain.mapper.toDomainDetails
 import com.example.aniverse.domain.model.Anime
@@ -30,7 +30,7 @@ import javax.inject.Inject
  * - UI observes Room data, which is automatically updated when network data arrives
  */
 class AnimeRepositoryImpl @Inject constructor(
-    private val apiService: JikanApiService,
+    private val apiService: AnimeApi,
     private val database: AppDatabase
 ) : AnimeRepository {
 
@@ -114,14 +114,9 @@ class AnimeRepositoryImpl @Inject constructor(
      * fresh data from the network. Useful for pull-to-refresh scenarios.
      */
     override suspend fun syncTopAnime(): Result<Unit> {
-        return try {
-            // Clear cache to force refresh
-            animeDao.clearAll()
-            database.remoteKeysDao().clearRemoteKeys()
-            Result.success(Unit)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
+        // We rely on Paging 3's RemoteMediator to handle data synchronization.
+        // Explicitly clearing the DB here causes data loss when offline.
+        return Result.success(Unit)
     }
 
     companion object {
