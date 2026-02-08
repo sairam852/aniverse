@@ -20,6 +20,7 @@ import com.example.aniverse.databinding.FragmentAnimeDetailBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import android.content.Intent
+import com.example.aniverse.config.AppConfig
 import com.google.android.material.snackbar.Snackbar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import dagger.hilt.android.AndroidEntryPoint
@@ -196,7 +197,7 @@ class AnimeDetailFragment : Fragment() {
     }
 
     private fun loadPosterImage(anime: com.example.aniverse.domain.model.AnimeDetails) {
-        if (com.example.aniverse.config.AppConfig.showImages) {
+        if (AppConfig.showImages) {
             Glide.with(binding.imagePoster)
                 .load(anime.largeImageUrl ?: anime.imageUrl)
                 .placeholder(R.drawable.ic_launcher_foreground)

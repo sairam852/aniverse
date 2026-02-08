@@ -17,9 +17,8 @@ import com.example.aniverse.data.local.entity.RemoteKeys
     entities = [
         AnimeEntity::class,
         RemoteKeys::class,
-        com.example.aniverse.data.local.entity.CharacterEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

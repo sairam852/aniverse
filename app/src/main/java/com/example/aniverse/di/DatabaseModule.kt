@@ -24,7 +24,7 @@ object DatabaseModule {
             AppDatabase::class.java,
             "aniverse_database"
         )
-            .fallbackToDestructiveMigration() // For initial version, can add migrations later
+            .fallbackToDestructiveMigration()
             .build()
     }
 }

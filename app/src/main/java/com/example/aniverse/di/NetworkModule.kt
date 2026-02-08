@@ -23,7 +23,6 @@ object NetworkModule {
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
-        // Keep logs verbose only in debug builds
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
         return interceptor
     }

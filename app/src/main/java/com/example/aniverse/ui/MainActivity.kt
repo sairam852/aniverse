@@ -9,11 +9,14 @@ import com.example.aniverse.databinding.ActivityMainBinding
 
 import dagger.hilt.android.AndroidEntryPoint
 
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)

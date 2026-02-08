@@ -83,6 +83,8 @@
                     android:layout_gravity="center"
                     android:visibility="gone"
                     android:src="@drawable/ic_play_arrow"
+                    app:backgroundTint="@color/nebula_pink"
+                    app:tint="@color/white"
                     android:contentDescription="@string/play_trailer"
                     tools:visibility="visible" />
             </FrameLayout>
@@ -106,6 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="@color/supernova_rating"
                     tools:text="★ 8.5" />
 
                 <TextView
@@ -122,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="@color/horizon_blue"
                     tools:text="TV" />
             </LinearLayout>
 
@@ -131,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/horizon_blue"
                 tools:text="Action, Drama, Fantasy" />
 
             <TextView
