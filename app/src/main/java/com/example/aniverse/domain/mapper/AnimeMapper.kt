@@ -91,7 +91,8 @@ fun AnimeDetailsDto.toDomain(): AnimeDetails {
         trailerUrl = trailer?.embedUrl ?: trailer?.url,
         genres = genres?.mapNotNull { it.name } ?: emptyList(),
         airedFrom = aired?.from,
-        airedTo = aired?.to
+        airedTo = aired?.to,
+        airedString = aired?.string
     )
 }
 
@@ -113,16 +114,17 @@ fun AnimeEntity.toDomainDetails(): AnimeDetails {
         rank = rank,
         popularity = popularity,
         synopsis = synopsis,
-        background = null, // Not stored in entity
-        duration = null, // Not stored in entity
-        rating = null, // Not stored in entity
+        background = null,
+        duration = null,
+        rating = null,
         season = season,
         year = year,
         imageUrl = imageUrl,
         largeImageUrl = largeImageUrl,
         trailerUrl = trailerUrl,
         genres = genres?.split(", ")?.filter { it.isNotEmpty() } ?: emptyList(),
-        airedFrom = null, // Not stored in entity
-        airedTo = null // Not stored in entity
+        airedFrom = null,
+        airedTo = null,
+        airedString = airedString
     )
 }

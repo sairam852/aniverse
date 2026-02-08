@@ -10,6 +10,7 @@ import com.example.aniverse.data.local.dao.AnimeDao
 import com.example.aniverse.data.local.entity.AnimeEntity
 import com.example.aniverse.data.paging.TopAnimeRemoteMediator
 import com.example.aniverse.data.remote.AnimeApi
+import com.example.aniverse.data.remote.dto.AnimeDetailsDto
 import com.example.aniverse.domain.mapper.toDomain
 import com.example.aniverse.domain.mapper.toDomainDetails
 import com.example.aniverse.domain.model.Anime
@@ -24,7 +25,7 @@ import javax.inject.Inject
 /**
  * Repository implementation for anime data operations.
  *
- * This implements the offline-first pattern:
+ * Implements the offline-first pattern:
  * - Room database is the single source of truth
  * - Network updates happen via RemoteMediator (for paging) or direct calls (for details)
  * - UI observes Room data, which is automatically updated when network data arrives
@@ -120,7 +121,7 @@ class AnimeRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        // Page size for pagination (Jikan API typically returns 25 items per page)
+        // Page size for pagination
         private const val PAGE_SIZE = 25
 
         // Prefetch distance - how many items ahead to prefetch
@@ -132,7 +133,7 @@ class AnimeRepositoryImpl @Inject constructor(
  * Extension function to convert AnimeDetailsDto to AnimeEntity.
  * This is used by the repository to save details to the database.
  */
-private fun com.example.aniverse.data.remote.dto.AnimeDetailsDto.toEntity(): AnimeEntity {
+private fun AnimeDetailsDto.toEntity(): AnimeEntity {
     val currentTime = System.currentTimeMillis()
 
     // Extract image URLs (prefer JPG, fallback to WebP)
@@ -166,6 +167,7 @@ private fun com.example.aniverse.data.remote.dto.AnimeDetailsDto.toEntity(): Ani
         largeImageUrl = largeImageUrl,
         trailerUrl = trailerUrl,
         genres = genresString,
-        lastUpdated = currentTime
+        lastUpdated = currentTime,
+        airedString = aired?.string
     )
 }

@@ -8,6 +8,7 @@ import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.aniverse.R
+import com.example.aniverse.config.AppConfig
 import com.example.aniverse.databinding.ItemAnimeBinding
 import com.example.aniverse.domain.model.Anime
 
@@ -46,7 +47,7 @@ class AnimePagingAdapter(
                 anime.formattedScore
             )
 
-            if (com.example.aniverse.config.AppConfig.showImages) {
+            if (AppConfig.showImages) {
                 Glide.with(binding.imagePoster)
                     .load(anime.imageUrl)
                     .placeholder(R.drawable.ic_launcher_foreground)

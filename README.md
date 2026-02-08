@@ -11,7 +11,7 @@ The app follows **Modern Android Development (MAD)** practices and **Clean Archi
 
 ### Key Libraries
 *   **Hilt**: Dependency Injection.
-*   **Jetpack Compose / XML**: (Note: Code uses XML ViewBinding).
+*   **XML**: Code uses XML ViewBinding.
 *   **Paging 3**: For efficient pagination of large lists.
 *   **Room**: Local database for offline caching.
 *   **Retrofit & Moshi**: Network requests and JSON parsing.
@@ -58,8 +58,5 @@ We use the `android-youtube-player` library to play trailers directly within the
 
 ## 📱 Features
 *   **Top Anime List**: Infinite scrolling list of popular anime.
-*   **Search**: Find anime by name.
-*   **Detailed View**: Synopsis, ratings, genres, and airing info.
-*   **Trailers**: Watch trailers seamlessly.
-*   **Favorites**: (Planned feature).
-*   **Dark Mode**: Fully supported.
+*   **Detailed View**: Synopsis, ratings, genres, Episodes,synopsis and airing info.
+*   **Trailers**: Watch trailers seamlessly

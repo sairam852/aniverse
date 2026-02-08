@@ -74,7 +74,8 @@
                     android:layout_height="250dp"
                     android:visibility="gone"
                     app:enableAutomaticInitialization="false"
-                    tools:visibility="visible" />
+                    tools:visibility="visible"
+                    tools:ignore="MissingClass" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fabPlayTrailer"

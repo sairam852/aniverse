@@ -97,7 +97,7 @@ class HomeFragment : Fragment() {
                         loadState.append.endOfPaginationReached &&
                         adapter.itemCount == 0
                 
-                // Prioritize showing the list if we have any data (cached or new)
+                // Prioritize showing the list if we have any data
                 val hasData = adapter.itemCount > 0
                 binding.recyclerAnime.isVisible = hasData
                 

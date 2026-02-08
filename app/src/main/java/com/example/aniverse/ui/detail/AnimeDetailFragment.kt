@@ -21,6 +21,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import android.content.Intent
 import com.example.aniverse.config.AppConfig
+import com.example.aniverse.util.UiState
 import com.google.android.material.snackbar.Snackbar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,7 +71,7 @@ class AnimeDetailFragment : Fragment() {
         val options = IFramePlayerOptions.Builder()
             .controls(1)
             .fullscreen(1)
-            .rel(0) // Hide related videos at the end
+            .rel(0)
             .build()
 
         try {
@@ -125,10 +126,10 @@ class AnimeDetailFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
                 when (state) {
-                    is com.example.aniverse.util.UiState.Loading -> showLoading()
-                    is com.example.aniverse.util.UiState.Success -> showContent(state.data)
-                    is com.example.aniverse.util.UiState.Error -> showError(state.message)
-                    is com.example.aniverse.util.UiState.Empty -> { /* Handle empty if needed */ }
+                    is UiState.Loading -> showLoading()
+                    is UiState.Success -> showContent(state.data)
+                    is UiState.Error -> showError(state.message)
+                    is UiState.Empty -> { }
                 }
             }
         }

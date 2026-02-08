@@ -5,6 +5,7 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.example.aniverse.config.AppConfig
 import com.example.aniverse.data.local.AppDatabase
 import com.example.aniverse.data.local.dao.AnimeDao
 import com.example.aniverse.data.local.dao.RemoteKeysDao
@@ -35,25 +36,11 @@ class TopAnimeRemoteMediator(
 
     override suspend fun initialize(): InitializeAction {
         // If sync is disabled, don't refresh
-        if (!com.example.aniverse.config.AppConfig.enableSync) {
+        if (!AppConfig.enableSync) {
             return InitializeAction.SKIP_INITIAL_REFRESH
         }
+        return InitializeAction.LAUNCH_INITIAL_REFRESH
 
-        // Check if we have cached data by checking if any anime exist in the database
-        val hasCachedData = try {
-            animeDao.getAnyAnime() != null
-        } catch (e: Exception) {
-            // If there's an error, assume no cached data and refresh
-            false
-        }
-        
-        return if (hasCachedData) {
-            // We have cached data, skip initial refresh
-            InitializeAction.SKIP_INITIAL_REFRESH
-        } else {
-            // No cached data, refresh immediately
-            InitializeAction.LAUNCH_INITIAL_REFRESH
-        }
     }
 
     override suspend fun load(
@@ -61,7 +48,7 @@ class TopAnimeRemoteMediator(
         state: PagingState<Int, AnimeEntity>
     ): MediatorResult {
         // If sync is disabled, don't load from network
-        if (!com.example.aniverse.config.AppConfig.enableSync) {
+        if (!AppConfig.enableSync) {
             return MediatorResult.Success(endOfPaginationReached = true)
         }
 
@@ -73,7 +60,7 @@ class TopAnimeRemoteMediator(
                     1
                 }
                 LoadType.PREPEND -> {
-                    // Prepend is not supported for top anime (we only go forward)
+                    // Prepend is not supported for top anime
                     return MediatorResult.Success(endOfPaginationReached = true)
                 }
                 LoadType.APPEND -> {
@@ -184,7 +171,8 @@ class TopAnimeRemoteMediator(
             largeImageUrl = largeImageUrl,
             trailerUrl = trailerUrl,
             genres = genresString,
-            lastUpdated = currentTime
+            lastUpdated = currentTime,
+            airedString = aired?.string
         )
     }
 }

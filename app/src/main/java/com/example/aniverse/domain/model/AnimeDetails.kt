@@ -30,6 +30,7 @@ data class AnimeDetails(
     val genres: List<String>,
     val airedFrom: String?,
     val airedTo: String?,
+    val airedString: String?,
     val cast: List<Character> = emptyList()
 ) {
     /**
@@ -64,7 +65,7 @@ data class AnimeDetails(
      * Formatted airing period (e.g., "Jan 2020 - Mar 2020" or "Jan 2020 - Present").
      */
     val formattedAiringPeriod: String
-        get() = when {
+        get() = airedString ?: when {
             airedFrom != null && airedTo != null -> "$airedFrom - $airedTo"
             airedFrom != null -> "$airedFrom - Present"
             else -> "Unknown"
