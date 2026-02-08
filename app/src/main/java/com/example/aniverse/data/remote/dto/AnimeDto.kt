@@ -29,7 +29,26 @@ data class AnimeDto(
     val year: Int?,
     val images: ImagesDto?,
     val trailer: TrailerDto?,
-    val genres: List<GenreDto>?
+    val genres: List<GenreDto>?,
+    val aired: AiredDto?
+)
+
+data class AiredDto(
+    val from: String?,
+    val to: String?,
+    val prop: AiredPropDto?,
+    val string: String?
+)
+
+data class AiredPropDto(
+    val from: AiredDateDto?,
+    val to: AiredDateDto?
+)
+
+data class AiredDateDto(
+    val day: Int?,
+    val month: Int?,
+    val year: Int?
 )
 
 /**

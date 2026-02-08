@@ -85,6 +85,9 @@ data class AnimeEntity(
      * from the network. Used for offline freshness.
      */
     @ColumnInfo(name = "last_updated")
-    val lastUpdated: Long
+    val lastUpdated: Long,
+
+    @ColumnInfo(name = "aired_string")
+    val airedString: String?
 )
 

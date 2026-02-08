@@ -1,6 +1,6 @@
 package com.example.aniverse.di
 
-import com.example.aniverse.data.remote.JikanApiService
+import com.example.aniverse.data.remote.AnimeApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -23,7 +23,6 @@ object NetworkModule {
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
-        // Keep logs verbose only in debug builds
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
         return interceptor
     }
@@ -61,10 +60,10 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideJikanApiService(
+    fun provideAnimeApi(
         retrofit: Retrofit
-    ): JikanApiService {
-        return retrofit.create(JikanApiService::class.java)
+    ): AnimeApi {
+        return retrofit.create(AnimeApi::class.java)
     }
 }
 

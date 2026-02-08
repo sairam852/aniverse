@@ -43,24 +43,5 @@ data class AnimeDetailsDto(
     val aired: AiredDto?
 )
 
-/**
- * Airing date information.
- * See: https://docs.jikan.moe/objects/common/aired
- */
-data class AiredDto(
-    val from: String?,
-    val to: String?,
-    val prop: AiredPropDto?
-)
 
-data class AiredPropDto(
-    val from: AiredDateDto?,
-    val to: AiredDateDto?
-)
-
-data class AiredDateDto(
-    val day: Int?,
-    val month: Int?,
-    val year: Int?
-)
 

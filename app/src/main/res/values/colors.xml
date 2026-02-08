@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Cosmic Void (Background) -->
+    <color name="cosmic_void">#0F172A</color>
+    
+    <!-- Stardust (Surface) -->
+    <color name="stardust_surface">#1E293B</color>
+    
+    <!-- Nebula Pink (Primary) -->
+    <color name="nebula_pink">#F43F5E</color>
+    
+    <!-- Horizon Blue (Secondary) -->
+    <color name="horizon_blue">#38BDF8</color>
+    
+    <!-- Supernova (Rating) -->
+    <color name="supernova_rating">#FACC15</color>
+    
+    <!-- Text High Emphasis -->
+    <color name="text_high_emphasis">#F8FAFC</color>
+    
+    <!-- Text Medium Emphasis -->
+    <color name="text_medium_emphasis">#94A3B8</color>
+    
+    <!-- Additional standard colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">aniverse</string>
+    <string name="top_anime">Top Anime</string>
+    <string name="anime_details">Anime Details</string>
+    <string name="no_anime_found">No anime found</string>
+    <string name="error_loading">Something went wrong</string>
+    <string name="retry">Retry</string>
+    <string name="poster">Anime poster</string>
+    <string name="rating_format">★ %s</string>
+    <string name="no_synopsis">No synopsis available</string>
+    <string name="play_trailer">Play Trailer</string>
+    <string name="trailer_unavailable_embedded">Trailer cannot be played here. Open in YouTube?</string>
+    <string name="open_in_youtube">Open</string>
 </resources>
