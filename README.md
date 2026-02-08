@@ -60,3 +60,6 @@ We use the `android-youtube-player` library to play trailers directly within the
 *   **Top Anime List**: Infinite scrolling list of popular anime.
 *   **Detailed View**: Synopsis, ratings, genres, Episodes,synopsis and airing info.
 *   **Trailers**: Watch trailers seamlessly
+*   **Offline Support**: View cached anime even without internet connection.
+*   **Clean Architecture**: Follows MVVM architecture with Hilt for dependency injection.
+*.  **ConfigDriven UI**: Config drive to display images or fallback images based on the flag values.
